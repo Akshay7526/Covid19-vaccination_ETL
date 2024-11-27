@@ -6,6 +6,8 @@ It also handles missing data and removes rows with invalid data
 
 then loaded into a SQLite database with proper error handling
 
+---"Data collected from multiples sources has been merged into a single database"---
+
 "pandas" is required to run the program
 
 enjoy playing around with code!!!
