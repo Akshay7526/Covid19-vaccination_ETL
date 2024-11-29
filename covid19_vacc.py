@@ -30,14 +30,21 @@ class VaccinationDataETL:
         if self.raw_data is None:
             print("No data to transform")
             return False
+        
+        print("Available Columns :",list(self.raw_data.columns))
 
-        # Select and rename relevant columns
-        self.processed_data = self.raw_data[[
-            'location', 'date', 
-            'people_vaccinated', 
-            'people_fully_vaccinated', 
-            'population'
-        ]].copy()
+        try:
+            # Select and rename relevant columns
+            self.processed_data = self.raw_data[[
+                'location', 'date', 
+                'people_vaccinated', 
+                'people_fully_vaccinated', 
+                'population'
+            ]].copy()
+        except KeyError as e:
+            print("Missing column: ",{e})
+            print("Please check the column name in the database")
+            return False
 
         # Clean and process data
         self.processed_data['date'] = pd.to_datetime(self.processed_data['date'])
